@@ -1,0 +1,26 @@
+service: lambda
+
+frameworkVersion: ">=2.3.0"
+
+provider:
+  name: aws
+  region: us-east-1
+  runtime: nodejs14.x
+
+functions:
+  handler:
+    handler: src/index.handler
+    events:
+      - httpApi:
+          path: /
+          method: get
+  handler2:
+    handler: src/index.handler2
+    events:
+      - httpApi:
+          path: /hello
+          method: post
+
+plugins:
+  - serverless-offline
+  - serverless-plugin-typescript
